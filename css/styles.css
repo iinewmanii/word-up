@@ -4,10 +4,13 @@ body {
     font-size: 20px;
 }
 
-.jumbotron {
+.page-header {
+    margin-bottom: 2%;
     padding: 2%;
     background: orange;
     color: #fff;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 64px;
 }
 
 main {
@@ -52,7 +55,13 @@ main {
 }
 
 .scoreboard-data {
-    font-size: 60px;
+    font-size: 88px;
+    color: grey;
+}
+
+.scoreboard-data-danger {
+    font-size: 88px;
+    color: #d9534f;
 }
 
 input {
@@ -65,4 +74,9 @@ input {
 input:focus {
     border: 2px solid #4285F4; /* Bootstrap "primary" blue */
     outline-color: #4285f4; /* outline is the fuzzy "glow" */
+}
+
+.col-xs-6 h6 {
+    font-size: 28px;
+    font-weight: 800;
 }
