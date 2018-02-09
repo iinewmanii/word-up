@@ -312,6 +312,9 @@ var scrabblePointsForEachLetter = {
     n: 1, o: 1, p: 3, q: 10, r: 1, s: 1, t: 1, u: 1, v: 4, w: 4, x: 8, y: 4, z: 10
 }
 
+var vowel = ['a', 'e', 'i', 'o', 'u'];
+var consonant = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'];
+
 /**
  * Given a letter, checks whether that letter is "disallowed"
  * meaning it is not a member of the .allowedLetters list from the current model
@@ -355,7 +358,12 @@ function containsOnlyAllowedLetters(word) {
  * Each letter will be distinct (no repeats of the same letter)
  */
 function generateAllowedLetters() {
-    return chooseN(7, Object.keys(scrabblePointsForEachLetter));
+    var vowelArray = chooseN(2, vowel);
+    var consonantArray = chooseN(5, consonant);
+    var allowedArray = vowelArray.concat(consonantArray);
+    allowedArray.sort(function(a, b){return 0.5 - Math.random()});
+
+    return  allowedArray;
 }
 
 /**
@@ -426,8 +434,13 @@ function chooseN(n, items) {
     var total = Math.min(n, items.length);
     for (var i = 0; i < total; i++) {
         var index = Math.floor(Math.random() * items.length);
-        selectedItems.push(items[index]);
-        items.splice(index, 1);
+        if (selectedItems.includes(items[index])) {
+            i--;
+            continue;
+        }
+        else {
+            selectedItems.push(items[index]);
+        }
     }
     return selectedItems;
 }
